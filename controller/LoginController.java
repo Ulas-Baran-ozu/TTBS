@@ -1,6 +1,7 @@
 package controller;
 
 //import model.User;
+import view.HomePageView;
 import view.LoginView;
 import view.RegisterView;
 
@@ -28,8 +29,12 @@ public class LoginController {
         String password = new String(loginView.passwordField.getPassword());
 
         // Database classları geldikten sonra tekrardan yazılacaktır.
-        if (email.equals("test@example.com") && password.equals("password123")) {
+        if (email.equals("admin") && password.equals("admin")) {
             JOptionPane.showMessageDialog(loginView, "Login Successful!");
+            loginView.dispose();  // Login ekranını kapat
+            HomePageView homePageView = new HomePageView();  // Home Page aç
+            new HomePageController(homePageView);  // Controller bağla
+            homePageView.setVisible(true);  // Home Page görünür yap
         } else {
             JOptionPane.showMessageDialog(loginView, "Invalid credentials.", "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -27,8 +27,8 @@ public class LoginView extends JFrame {
         panel.add(emailField);
         panel.add(new JLabel("Password:"));
         panel.add(passwordField);
-        panel.add(loginButton);
         panel.add(registerLabel);
+        panel.add(loginButton);
 
         add(panel);
     }

@@ -39,8 +39,8 @@ public class RegisterView extends JFrame {
         panel.add(passwordField);
         panel.add(new JLabel("Confirm Password:"));
         panel.add(confirmPasswordField);
-        panel.add(registerButton);
         panel.add(loginLabel);
+        panel.add(registerButton);
 
         add(panel);
     }
