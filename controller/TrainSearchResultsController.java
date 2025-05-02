@@ -4,6 +4,7 @@ package controller;
 
 import model.TrainJourney;
 //import view.SeatSelectionView;
+import view.SeatSelectionPageView;
 import view.TrainSearchResultsView;
 
 import javax.swing.*;
@@ -25,9 +26,10 @@ public class TrainSearchResultsController {
         view.proceedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                proceed();
+                proceed();
             }
         });
+
     }
 
     private void loadTable() {
@@ -60,6 +62,24 @@ public class TrainSearchResultsController {
 //            seatSelectionView.setVisible(true);
 //        }
 //    }
+private void proceed() {
+    int selectedRow = view.journeyTable.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(view, "Please select a train journey.", "Warning", JOptionPane.WARNING_MESSAGE);
+    } else {
+        // Get selected train journey
+        TrainJourney selectedJourney = journeys.get(selectedRow);
+
+        // Ticket count — later you can pass this from HomePage
+        int ticketCount = 1;
+
+        view.dispose(); // Close current view
+        SeatSelectionPageView seatSelectionView = new SeatSelectionPageView();
+        new SeatSelectionPageController(seatSelectionView);
+        seatSelectionView.setVisible(true);
+    }
+}
+
 
     private ArrayList<TrainJourney> createDummyData() {
         ArrayList<TrainJourney> list = new ArrayList<>();

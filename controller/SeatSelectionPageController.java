@@ -1,0 +1,77 @@
+package controller;
+
+import view.SeatSelectionPageView;
+import view.PaymentSuccessfulView;
+import view.HomePageView;
+import view.TrainSearchResultsView;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SeatSelectionPageController {
+    private SeatSelectionPageView view;
+    private JButton selectedSeat = null;
+
+    public SeatSelectionPageController(SeatSelectionPageView view) {
+        this.view = view;
+
+
+        int[] occupiedSeats = {2, 7, 13};
+        markOccupiedSeats(occupiedSeats);
+
+        for (int i = 0; i < view.rows; i++) {
+            for (int j = 0; j < view.cols; j++) {
+                JButton seat = view.seatButtons[i][j];
+                if (seat.isEnabled()) {
+                    seat.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (selectedSeat != null) {
+                                selectedSeat.setBackground(Color.GREEN);
+                            }
+                            selectedSeat = seat;
+                            seat.setBackground(Color.BLUE);
+                        }
+                    });
+                }
+            }
+        }
+
+        view.proceedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedSeat == null) {
+                    JOptionPane.showMessageDialog(view, "Please select a seat before proceeding.");
+                } else {
+                    view.dispose();
+                    PaymentSuccessfulView view = new PaymentSuccessfulView();
+                    new PaymentSuccessfulController(view);
+                    view.setVisible(true);
+
+                }
+            }
+        });
+
+        view.backButton.addActionListener(e -> {
+            view.dispose();
+            TrainSearchResultsView trainListView = new TrainSearchResultsView();
+            new TrainSearchResultsController(trainListView);
+            trainListView.setVisible(true);
+        });
+
+
+    }
+
+    private void markOccupiedSeats(int[] seats) {
+        for (int seatNum : seats) {
+            int index = seatNum - 1;
+            int row = index / view.cols;
+            int col = index % view.cols;
+            JButton seat = view.seatButtons[row][col];
+            seat.setBackground(Color.RED);
+            seat.setEnabled(false);
+        }
+    }
+}

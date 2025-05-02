@@ -1,6 +1,8 @@
 package controller;
 
 import view.HomePageView;
+import view.MyTicketsPageView;
+import view.ProfilePageView;
 
 import javax.swing.*;
 
@@ -10,8 +12,18 @@ public class HomePageController {
     public HomePageController(HomePageView homePageView) {
         this.homePageView = homePageView;
 
-        homePageView.profileButton.addActionListener(e -> JOptionPane.showMessageDialog(homePageView, "Profil sayfası açılacak."));
-        homePageView.ticketsButton.addActionListener(e -> JOptionPane.showMessageDialog(homePageView, "Biletlerim sayfası açılacak."));
+        homePageView.profileButton.addActionListener(e -> {
+            homePageView.dispose();
+            ProfilePageView profileView = new ProfilePageView();
+            new ProfilePageController(profileView);
+            profileView.setVisible(true);
+        });
+        homePageView.ticketsButton.addActionListener(e -> {
+            homePageView.dispose();
+            MyTicketsPageView ticketsView = new MyTicketsPageView();
+            new MyTicketsPageController(ticketsView);
+            ticketsView.setVisible(true);
+        });
         homePageView.logoutButton.addActionListener(e -> logout());
         homePageView.searchButton.addActionListener(e -> searchTickets());
     }
