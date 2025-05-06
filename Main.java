@@ -1,9 +1,12 @@
+
 import view.LoginView;
 import controller.LoginController;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             LoginView loginView = new LoginView();
             new LoginController(loginView);
             loginView.setVisible(true);
