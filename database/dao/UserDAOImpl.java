@@ -33,7 +33,29 @@ public class UserDAOImpl implements UserDAO {
             p.executeUpdate();
         }
     }
+    @Override
+    public User getByEmailAndPassword(String email, String password) throws SQLException {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement p = conn.prepareStatement(sql)) {
 
+            p.setString(1, email);
+            p.setString(2, password);
+
+            try (ResultSet rs = p.executeQuery()) {
+                if (!rs.next()) return null;
+                Date bd = rs.getDate("birth_date");
+                return new User(
+                        rs.getInt("user_id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        bd
+                );
+            }
+        }
+    }
     @Override
     public User getById(int userId) throws SQLException {
         String sql = "SELECT * FROM users WHERE user_id = ?";
