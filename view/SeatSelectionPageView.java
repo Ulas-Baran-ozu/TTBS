@@ -43,6 +43,7 @@ public class SeatSelectionPageView extends JFrame {
         journeyInfoLabel = new JLabel("Sefer Bilgisi: ");
 
         setLayout(new BorderLayout());
+        //
         add(seatPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
     }
