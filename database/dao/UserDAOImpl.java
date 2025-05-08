@@ -1,4 +1,3 @@
-
 package database.dao;
 
 import database.DBConnection;
@@ -33,7 +32,6 @@ public class UserDAOImpl implements UserDAO {
             p.executeUpdate();
         }
     }
-
     @Override
     public User getById(int userId) throws SQLException {
         String sql = "SELECT * FROM users WHERE user_id = ?";

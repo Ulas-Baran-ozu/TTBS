@@ -3,7 +3,8 @@ package controller;
 import view.HomePageView;
 import view.MyTicketsPageView;
 import view.ProfilePageView;
-
+import model.entities.User;
+import model.Session;
 import javax.swing.*;
 
 public class HomePageController {
@@ -11,6 +12,7 @@ public class HomePageController {
 
     public HomePageController(HomePageView homePageView) {
         this.homePageView = homePageView;
+        User user = Session.getCurrentUser();
 
         homePageView.profileButton.addActionListener(e -> {
             homePageView.dispose();
@@ -29,8 +31,16 @@ public class HomePageController {
         homePageView.searchButton.addActionListener(e -> searchTickets());
     }
 
+//    private void logout() {
+//        JOptionPane.showMessageDialog(homePageView, "Çıkış yapılıyor.");
+//        homePageView.dispose();
+//        view.LoginView loginView = new view.LoginView();
+//        new LoginController(loginView);
+//        loginView.setVisible(true);
+//    }
     private void logout() {
         JOptionPane.showMessageDialog(homePageView, "Çıkış yapılıyor.");
+        model.Session.clear();
         homePageView.dispose();
         view.LoginView loginView = new view.LoginView();
         new LoginController(loginView);
