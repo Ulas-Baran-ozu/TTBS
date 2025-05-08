@@ -2,7 +2,6 @@ package controller;
 
 import view.SeatSelectionPageView;
 import view.PaymentSuccessfulView;
-import view.HomePageView;
 import view.TrainSearchResultsView;
 
 import javax.swing.*;
@@ -13,9 +12,15 @@ import java.awt.event.ActionListener;
 public class SeatSelectionPageController {
     private SeatSelectionPageView view;
     private JButton selectedSeat = null;
-
+    private String departure, arrival, date, tripType;
+    private int tickets;
     public SeatSelectionPageController(SeatSelectionPageView view) {
         this.view = view;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.date = date;
+        this.tickets = tickets;
+        this.tripType = tripType;
 
 
         int[] occupiedSeats = {2, 7, 13};
@@ -57,7 +62,7 @@ public class SeatSelectionPageController {
         view.backButton.addActionListener(e -> {
             view.dispose();
             TrainSearchResultsView trainListView = new TrainSearchResultsView();
-            new TrainSearchResultsController(trainListView);
+            new TrainSearchResultsController(trainListView, departure, arrival, date, tickets, tripType);
             trainListView.setVisible(true);
         });
 

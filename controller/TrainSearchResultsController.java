@@ -17,7 +17,7 @@ public class TrainSearchResultsController {
     private TrainSearchResultsView view;
     private ArrayList<TrainJourney> journeys;
 
-    public TrainSearchResultsController(TrainSearchResultsView view) {
+    public TrainSearchResultsController(TrainSearchResultsView view, String departure, String arrival, String date, int tickets, String tripType) {
         this.view = view;
         this.journeys = createDummyData();
 
@@ -26,11 +26,13 @@ public class TrainSearchResultsController {
         view.proceedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                proceed();
+                proceed(tickets);
             }
         });
 
     }
+
+
 
     private void loadTable() {
         DefaultTableModel model = (DefaultTableModel) view.journeyTable.getModel();
@@ -62,7 +64,7 @@ public class TrainSearchResultsController {
 //            seatSelectionView.setVisible(true);
 //        }
 //    }
-private void proceed() {
+private void proceed(int ticketCount) {
     int selectedRow = view.journeyTable.getSelectedRow();
     if (selectedRow == -1) {
         JOptionPane.showMessageDialog(view, "Please select a train journey.", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -70,15 +72,31 @@ private void proceed() {
         // Get selected train journey
         TrainJourney selectedJourney = journeys.get(selectedRow);
 
-        // Ticket count — later you can pass this from HomePage
-        int ticketCount = 1;
+
 
         view.dispose(); // Close current view
         SeatSelectionPageView seatSelectionView = new SeatSelectionPageView();
-        new SeatSelectionPageController(seatSelectionView);
+        new SeatSelectionPageController(seatSelectionView, selectedJourney, ticketCount);
         seatSelectionView.setVisible(true);
     }
 }
+
+
+    //dummy veri içinden filtreleme yapan metod
+    private ArrayList<TrainJourney> getFilteredJourneys(String departure, String arrival, String date) {
+        ArrayList<TrainJourney> allJourneys = createDummyData();
+        ArrayList<TrainJourney> filtered = new ArrayList<>();
+
+        for (TrainJourney j : allJourneys) {
+            if (j.getRoute().toLowerCase().contains(departure.toLowerCase())
+                    && j.getRoute().toLowerCase().contains(arrival.toLowerCase())) {
+                filtered.add(j);
+            }
+        }
+
+        return filtered;
+    }
+
 
 
     private ArrayList<TrainJourney> createDummyData() {
@@ -89,4 +107,5 @@ private void proceed() {
         list.add(new TrainJourney("Doğu Ekspresi", 5, 100, "15:45", "24 saat", "Ankara -> Kars"));
         return list;
     }
+
 }

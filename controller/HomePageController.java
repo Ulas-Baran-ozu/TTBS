@@ -7,7 +7,7 @@ import view.ProfilePageView;
 import javax.swing.*;
 
 public class HomePageController {
-    private HomePageView homePageView;
+    private final HomePageView homePageView;
 
     public HomePageController(HomePageView homePageView) {
         this.homePageView = homePageView;
@@ -18,10 +18,11 @@ public class HomePageController {
             new ProfilePageController(profileView);
             profileView.setVisible(true);
         });
-        homePageView.ticketsButton.addActionListener(e -> {
+        homePageView.logoutButton.addActionListener(e -> logout());
             homePageView.dispose();
             MyTicketsPageView ticketsView = new MyTicketsPageView();
-            new MyTicketsPageController(ticketsView);
+            int currentUserId = 1; // Şimdilik sabit. Giriş yapan kullanıcıdan alınmalı.
+            new MyTicketsPageController(ticketsView, currentUserId);
             ticketsView.setVisible(true);
         });
         homePageView.logoutButton.addActionListener(e -> logout());
@@ -47,7 +48,7 @@ public class HomePageController {
 
         homePageView.dispose();
         view.TrainSearchResultsView resultsView = new view.TrainSearchResultsView();
-        new controller.TrainSearchResultsController(resultsView);
+        new controller.TrainSearchResultsController(resultsView, departure, arrival, date, tickets, tripType);
         resultsView.setVisible(true);
 
     }

@@ -118,4 +118,21 @@ public class TicketDAOImpl implements TicketDAO {
             p.executeUpdate();
         }
     }
+    public boolean isSeatTaken(int routeId, int seatId) {
+        String sql = "SELECT COUNT(*) FROM tickets WHERE route_id = ? AND seat_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement p = conn.prepareStatement(sql)) {
+
+            p.setInt(1, routeId);
+            p.setInt(2, seatId);
+            try (ResultSet rs = p.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

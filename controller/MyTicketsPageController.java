@@ -13,9 +13,9 @@ public class MyTicketsPageController {
     private MyTicketsPageView view;
     private int userId;
 
-    public MyTicketsPageController(MyTicketsPageView view) {
+    public MyTicketsPageController(MyTicketsPageView view,int userId) {
         this.view = view;
-
+        this.userId = userId;
 
         loadTicketsFromDatabase();
 
@@ -48,7 +48,8 @@ public class MyTicketsPageController {
 
     private void loadTicketsFromDatabase() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ttbs", "root", "yourpassword");
+            // Bu doğru (merkezden yönetilen bağlantı)
+            Connection conn = database.DBConnection.getConnection();
             String query = "SELECT ticket_id, train_name, travel_date, departure, arrival, seat_no FROM tickets WHERE user_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, userId);
