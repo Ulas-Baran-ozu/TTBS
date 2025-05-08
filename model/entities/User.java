@@ -10,6 +10,15 @@ public class User {
     private String password;
     private java.sql.Date birthDate;
 
+//    public User(int userId, String firstName, String lastName, String email, String password, Date birthDate) {
+    public User(String firstName, String lastName, String email, String password, Date birthDate) {
+//        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+    }
     public User(int userId, String firstName, String lastName, String email, String password, Date birthDate) {
         this.userId = userId;
         this.firstName = firstName;
