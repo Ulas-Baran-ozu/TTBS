@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class SeatSelectionPageView extends JFrame {
     public JButton[][] seatButtons;
     public JButton proceedButton, backButton;
@@ -10,6 +11,7 @@ public class SeatSelectionPageView extends JFrame {
     public JPanel seatPanel; // EKLENDİ
     public JLabel selectedCountLabel; // EKLENDİ
     public JLabel journeyInfoLabel;   // EKLENDİ
+    public JButton proceedButton, backButton; // zaten vardı ama netleştirildi
 
     public SeatSelectionPageView() {
         setTitle("Seat Selection");
@@ -27,11 +29,14 @@ public class SeatSelectionPageView extends JFrame {
                 seatPanel.add(seat);
             }
         }
-
+        selectedCountLabel = new JLabel("Seçilen Koltuklar: 0"); // EKLENDİ
+        journeyInfoLabel = new JLabel("Sefer Bilgisi: ");        // EKLENDİ
         proceedButton = new JButton("Proceed to Payment");
         backButton = new JButton("Back");
 
-        JPanel bottomPanel = new JPanel();
+        JPanel bottomPanel = new JPanel(new GridLayout(2, 2, 10, 10)); // EKLENDİ
+        bottomPanel.add(selectedCountLabel);  // EKLENDİ
+        bottomPanel.add(journeyInfoLabel);   // EKLENDİ
         bottomPanel.add(backButton);
         bottomPanel.add(proceedButton);
         selectedCountLabel = new JLabel("Seçilen Koltuklar: 0");
