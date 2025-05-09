@@ -12,7 +12,6 @@ public class HomePageController {
 
     public HomePageController(HomePageView homePageView) {
         this.homePageView = homePageView;
-        User user = Session.getCurrentUser();
 
         homePageView.profileButton.addActionListener(e -> {
             homePageView.dispose();
@@ -20,18 +19,20 @@ public class HomePageController {
             new ProfilePageController(profileView);
             profileView.setVisible(true);
         });
-        homePageView.logoutButton.addActionListener(e -> logout());
+
+        homePageView.ticketsButton.addActionListener(e -> {
             homePageView.dispose();
             MyTicketsPageView ticketsView = new MyTicketsPageView();
-            int currentUserId = 1; // Şimdilik sabit. Giriş yapan kullanıcıdan alınmalı.
+            int currentUserId = 1; // Örnek kullanıcı ID
             new MyTicketsPageController(ticketsView, currentUserId);
             ticketsView.setVisible(true);
         });
+
         homePageView.logoutButton.addActionListener(e -> logout());
         homePageView.searchButton.addActionListener(e -> searchTickets());
-    }
+    } // <-- Bu constructor'ın doğru kapanışı
 
-//    private void logout() {
+    //    private void logout() {
 //        JOptionPane.showMessageDialog(homePageView, "Çıkış yapılıyor.");
 //        homePageView.dispose();
 //        view.LoginView loginView = new view.LoginView();

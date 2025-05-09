@@ -11,7 +11,7 @@ public class SeatSelectionPageView extends JFrame {
     public JPanel seatPanel; // EKLENDİ
     public JLabel selectedCountLabel; // EKLENDİ
     public JLabel journeyInfoLabel;   // EKLENDİ
-    public JButton proceedButton, backButton; // zaten vardı ama netleştirildi
+
 
     public SeatSelectionPageView() {
         setTitle("Seat Selection");

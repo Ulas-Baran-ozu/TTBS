@@ -72,14 +72,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-public class SeatSelectionPageController {
+public class SeatSelectionController {
     private SeatSelectionPageView view;
     private TrainJourney selectedJourney;
     private int ticketCount;
     private int selectedCount = 0;
     private ArrayList<JButton> selectedSeats = new ArrayList<>();
 
-    public SeatSelectionPageController(SeatSelectionPageView view, TrainJourney selectedJourney, int ticketCount) {
+    public SeatSelectionController(SeatSelectionPageView view, TrainJourney selectedJourney, int ticketCount) {
         this.view = view;
         this.selectedJourney = selectedJourney;
         this.ticketCount = ticketCount;

@@ -14,7 +14,7 @@ public class SeatSelectionPageController {
     private JButton selectedSeat = null;
     private String departure, arrival, date, tripType;
     private int tickets;
-    public SeatSelectionPageController(SeatSelectionPageView view) {
+    public SeatSelectionPageController(SeatSelectionPageView view, String departure, String arrival, String date, int tickets, String tripType) {
         this.view = view;
         this.departure = departure;
         this.arrival = arrival;

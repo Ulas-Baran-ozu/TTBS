@@ -13,14 +13,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+//private String departure, arrival, date, tripType;
+
+
 public class TrainSearchResultsController {
     private TrainSearchResultsView view;
     private ArrayList<TrainJourney> journeys;
+    private String departure, arrival, date, tripType;
+    private int tickets;
 
     public TrainSearchResultsController(TrainSearchResultsView view, String departure, String arrival, String date, int tickets, String tripType) {
         this.view = view;
-        this.journeys = createDummyData();
+        this.departure = departure;
+        this.arrival = arrival;
+        this.date = date;
+        this.tickets = tickets;
+        this.tripType = tripType;
 
+        this.journeys = createDummyData(); // veya getFilteredJourneys() kullanıyorsan ona göre
         loadTable();
 
         view.proceedButton.addActionListener(new ActionListener() {
@@ -76,7 +86,8 @@ private void proceed(int ticketCount) {
 
         view.dispose(); // Close current view
         SeatSelectionPageView seatSelectionView = new SeatSelectionPageView();
-        new SeatSelectionPageController(seatSelectionView, selectedJourney, ticketCount);
+        new SeatSelectionPageController(seatSelectionView, departure, arrival, date, tickets, tripType);
+
         seatSelectionView.setVisible(true);
     }
 }
