@@ -30,7 +30,7 @@ public class HomePageController {
         homePageView.searchButton.addActionListener(e -> searchTickets());
     }
 
-//    private void logout() {
+    //    private void logout() {
 //        JOptionPane.showMessageDialog(homePageView, "Çıkış yapılıyor.");
 //        homePageView.dispose();
 //        view.LoginView loginView = new view.LoginView();

@@ -35,7 +35,7 @@ public class LoginController {
         UserDAO userDAO = new UserDAOImpl();
         try {
             User user = userDAO.getByEmailAndPassword(email, password);
-
+            //if(user !=null) !!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (user != null) {
                 JOptionPane.showMessageDialog(loginView, "Giriş başarılı! Hoş geldin, " + user.getFirstName() + "!");
                 loginView.dispose();
