@@ -10,4 +10,5 @@ public interface RouteDAO {
     List<Route> getAll() throws SQLException;
     void update(Route route) throws SQLException;
     void delete(int routeId) throws SQLException;
+    List<Route> search(String departure, String arrival, java.sql.Date date) throws SQLException;
 }

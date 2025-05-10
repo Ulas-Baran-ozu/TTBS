@@ -50,6 +50,33 @@ public class RouteDAOImpl implements RouteDAO {
             }
         }
     }
+    @Override
+    public List<Route> search(String departure, String arrival, java.sql.Date date) throws SQLException {
+        String sql = "SELECT * FROM routes WHERE source_station = ? AND destination_station = ? AND DATE(departure_time) = ?";
+        List<Route> result = new ArrayList<>();
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement p = conn.prepareStatement(sql)) {
+
+            p.setString(1, departure);
+            p.setString(2, arrival);
+            p.setDate(3, date);
+
+            try (ResultSet rs = p.executeQuery()) {
+                while (rs.next()) {
+                    result.add(new Route(
+                            rs.getInt("route_id"),
+                            rs.getString("train_name"),
+                            rs.getString("source_station"),
+                            rs.getString("destination_station"),
+                            rs.getTimestamp("departure_time"),
+                            rs.getTimestamp("arrival_time")
+                    ));
+                }
+            }
+        }
+        return result;
+    }
 
     @Override
     public List<Route> getAll() throws SQLException {

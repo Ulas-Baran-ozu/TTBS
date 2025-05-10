@@ -7,7 +7,7 @@ public class PaymentSuccessfulView extends JFrame {
     public JTextArea ticketInfoArea;
     public JButton backButton;
 
-    public PaymentSuccessfulView() {
+    public PaymentSuccessfulView(String ticketInfo) {
         setTitle("Payment Successful");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,7 +16,7 @@ public class PaymentSuccessfulView extends JFrame {
         ticketInfoArea = new JTextArea();
         ticketInfoArea.setEditable(false);
         ticketInfoArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
-        ticketInfoArea.setText("Your payment was successful!\n\nTicket Details:\n- Train: X\n- Date: YYYY-MM-DD\n- Seat: 12\n- From: A → B");
+        ticketInfoArea.setText(ticketInfo); // ✅ Dinamik içerik
 
         backButton = new JButton("Back to Home");
 

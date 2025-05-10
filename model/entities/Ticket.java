@@ -9,6 +9,12 @@ public class Ticket {
     private int seatId;
     private java.sql.Timestamp bookingTime;
 
+    public Ticket(int userId, int routeId, int seatId) {
+        this.userId = userId;
+        this.routeId = routeId;
+        this.seatId = seatId;
+    }
+
     public Ticket(int ticketId, int userId, int routeId, int seatId, Timestamp bookingTime) {
         this.ticketId = ticketId;
         this.userId = userId;
