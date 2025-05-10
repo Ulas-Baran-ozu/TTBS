@@ -1,9 +1,11 @@
-package controller;
+
+        package controller;
 
 import database.dao.UserDAO;
 import database.dao.UserDAOImpl;
 import model.Session;
 import model.entities.User;
+import view.AdminHomePageView;
 import view.HomePageView;
 import view.LoginView;
 import view.RegisterView;
@@ -35,15 +37,20 @@ public class LoginController {
         UserDAO userDAO = new UserDAOImpl();
         try {
             User user = userDAO.getByEmailAndPassword(email, password);
-            //if(user !=null) !!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (user != null) {
                 JOptionPane.showMessageDialog(loginView, "Giriş başarılı! Hoş geldin, " + user.getFirstName() + "!");
                 loginView.dispose();
                 Session.setCurrentUser(user);
 
-                HomePageView homePageView = new HomePageView();
-                new HomePageController(homePageView);
-                homePageView.setVisible(true);
+                if (user.isAdmin()) {
+                    AdminHomePageView adminHomePageView = new AdminHomePageView();
+                    new AdminHomePageController(adminHomePageView);
+                    adminHomePageView.setVisible(true);
+                } else {
+                    HomePageView homePageView = new HomePageView();
+                    new HomePageController(homePageView);
+                    homePageView.setVisible(true);
+                }
             } else {
                 JOptionPane.showMessageDialog(loginView, "Geçersiz kullanıcı bilgileri.", "Hata", JOptionPane.ERROR_MESSAGE);
             }

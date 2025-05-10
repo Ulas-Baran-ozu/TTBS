@@ -1,3 +1,4 @@
+
 package model;
 
 import model.entities.User;
@@ -11,6 +12,10 @@ public class Session {
 
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    public static boolean isAdmin() {
+        return currentUser != null && currentUser.isAdmin();
     }
 
     public static void clear() {

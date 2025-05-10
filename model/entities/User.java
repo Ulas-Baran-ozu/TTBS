@@ -9,6 +9,7 @@ public class User {
     private String email;
     private String password;
     private java.sql.Date birthDate;
+    private boolean isAdmin;
 
     public User(String firstName, String lastName, String email, String password, Date birthDate) {
         this.firstName = firstName;
@@ -16,6 +17,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
+        this.isAdmin = false;
     }
     public User(int userId, String firstName, String lastName, String email, String password, Date birthDate) {
         this.userId = userId;
@@ -24,8 +26,17 @@ public class User {
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
+        this.isAdmin = false;
     }
-
+    public User(int userId, String firstName, String lastName, String email, String password, Date birthDate, boolean isAdmin) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.isAdmin = isAdmin;
+    }
     public int getUserId() {
         return userId;
     }
@@ -72,5 +83,12 @@ public class User {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

@@ -60,3 +60,10 @@ CREATE TABLE `payments` (
                             PRIMARY KEY (`payment_id`),
                             FOREIGN KEY (`ticket_id`) REFERENCES `tickets`(`ticket_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8mb4;
+
+ALTER TABLE `users`
+    ADD `is_admin` TINYINT(1) NOT NULL DEFAULT 0;
+
+
+INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `is_admin`)
+VALUES ('Admin', 'User', 'admin@gmail.com', 'admin', 1);
