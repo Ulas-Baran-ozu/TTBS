@@ -13,7 +13,7 @@ public class RegisterView extends JFrame {
     public JLabel loginLabel;
     public JTextField birthDateField;
 
-//    public RegisterView() {
+    //    public RegisterView() {
 //        setTitle("Register");
 //        setSize(300, 300);
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,33 +49,33 @@ public class RegisterView extends JFrame {
 //
 //        add(panel);
 //    }
-public RegisterView() {
-    setTitle("Register");
-    setSize(400, 400);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocationRelativeTo(null);
+    public RegisterView() {
+        setTitle("Register");
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-    JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-    panel.add(createLabeledField("First Name:", firstNameField = new JTextField()));
-    panel.add(createLabeledField("Last Name:", lastNameField = new JTextField()));
-    panel.add(createLabeledField("Email:", emailField = new JTextField()));
-    panel.add(createLabeledField("Birthdate (yyyy-MM-dd):", birthDateField = new JTextField()));
-    panel.add(createLabeledField("Password:", passwordField = new JPasswordField()));
-    panel.add(createLabeledField("Confirm Password:", confirmPasswordField = new JPasswordField()));
+        panel.add(createLabeledField("First Name:", firstNameField = new JTextField()));
+        panel.add(createLabeledField("Last Name:", lastNameField = new JTextField()));
+        panel.add(createLabeledField("Email:", emailField = new JTextField()));
+        panel.add(createLabeledField("Birthdate (yyyy-MM-dd):", birthDateField = new JTextField()));
+        panel.add(createLabeledField("Password:", passwordField = new JPasswordField()));
+        panel.add(createLabeledField("Confirm Password:", confirmPasswordField = new JPasswordField()));
 
-    loginLabel = new JLabel("Already have an account? Login.");
-    loginLabel.setForeground(Color.BLUE);
-    loginLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-    panel.add(loginLabel);
+        loginLabel = new JLabel("Already have an account? Login.");
+        loginLabel.setForeground(Color.BLUE);
+        loginLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(loginLabel);
 
-    registerButton = new JButton("Register");
-    registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    panel.add(registerButton);
+        registerButton = new JButton("Register");
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(registerButton);
 
-    add(panel);
-}
+        add(panel);
+    }
 
     private JPanel createLabeledField(String labelText, JComponent field) {
         JPanel panel = new JPanel(new BorderLayout());

@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package model.entities;
 
 import java.sql.Date;
@@ -8,7 +13,15 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private java.sql.Date birthDate;
+    private Date birthDate;
+
+    public User(String firstName, String lastName, String email, String password, Date birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+    }
 
 //    public User(int userId, String firstName, String lastName, String email, String password, Date birthDate) {
     public User(String firstName, String lastName, String email, String password, Date birthDate) {
@@ -29,7 +42,7 @@ public class User {
     }
 
     public int getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(int userId) {
@@ -37,7 +50,7 @@ public class User {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -45,7 +58,7 @@ public class User {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -53,7 +66,7 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -61,7 +74,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -69,7 +82,7 @@ public class User {
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return this.birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
