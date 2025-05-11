@@ -35,7 +35,7 @@ public class TrainSearchResultsView extends JFrame {
         header.setFont(new Font("Arial", Font.BOLD, 14));
 
         JScrollPane scrollPane = new JScrollPane(journeyTable);
-        proceedButton = new JButton("İlerle");
+        proceedButton = new JButton("Forward");
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(proceedButton);

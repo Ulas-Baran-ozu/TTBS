@@ -18,9 +18,9 @@ public class HomePageView extends JFrame {
         setLocationRelativeTo(null);
 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        profileButton = new JButton("Profilim");
-        ticketsButton = new JButton("Biletlerim");
-        logoutButton = new JButton("Çıkış Yap");
+        profileButton = new JButton("My Profile");
+        ticketsButton = new JButton("My Tickets");
+        logoutButton = new JButton("Exit");
         topPanel.add(profileButton);
         topPanel.add(ticketsButton);
         topPanel.add(logoutButton);
@@ -29,23 +29,23 @@ public class HomePageView extends JFrame {
         ticketCountSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
         departureField = new JTextField();
         arrivalField = new JTextField();
-        oneWayRadio = new JRadioButton("Tek Yön");
-        roundTripRadio = new JRadioButton("Gidiş-Dönüş");
+        oneWayRadio = new JRadioButton("One-Way");
+        roundTripRadio = new JRadioButton("Round Trip");
         tripTypeGroup = new ButtonGroup();
         tripTypeGroup.add(oneWayRadio);
         tripTypeGroup.add(roundTripRadio);
         dateField = new JTextField();
-        searchButton = new JButton("Ara");
+        searchButton = new JButton("Search");
 
-        centerPanel.add(new JLabel("Kaç Bilet:"));
+        centerPanel.add(new JLabel("How Many Tickets:"));
         centerPanel.add(ticketCountSpinner);
-        centerPanel.add(new JLabel("Kalkış Noktası:"));
+        centerPanel.add(new JLabel("Departure:"));
         centerPanel.add(departureField);
-        centerPanel.add(new JLabel("Varış Noktası:"));
+        centerPanel.add(new JLabel("Arrival:"));
         centerPanel.add(arrivalField);
         centerPanel.add(oneWayRadio);
         centerPanel.add(roundTripRadio);
-        centerPanel.add(new JLabel("Tarih (YYYY-MM-DD):"));
+        centerPanel.add(new JLabel("Date (YYYY-MM-DD):"));
         centerPanel.add(dateField);
         centerPanel.add(new JLabel(""));
         centerPanel.add(searchButton);

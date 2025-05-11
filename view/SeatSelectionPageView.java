@@ -32,11 +32,11 @@ public class SeatSelectionPageView extends JFrame {
             }
         }
 
-        selectedCountLabel = new JLabel("Seçilen Koltuklar: 0");
-        journeyInfoLabel = new JLabel("Sefer Bilgisi: ");
-        purchaseButton = new JButton("Satın Al");
+        selectedCountLabel = new JLabel("Selected Seats: 0");
+        journeyInfoLabel = new JLabel("Information: ");
+        purchaseButton = new JButton("Buy");
         purchaseButton.setEnabled(false);
-        backButton = new JButton("Geri");
+        backButton = new JButton("Back");
 
         JPanel bottomPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         bottomPanel.add(selectedCountLabel);
