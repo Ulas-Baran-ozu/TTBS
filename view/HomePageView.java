@@ -53,5 +53,7 @@ public class HomePageView extends JFrame {
         setLayout(new BorderLayout());
         add(topPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
+        oneWayRadio.setSelected(true); // eklendi varsayılan olarak tekyön seçili
+        setVisible(true);              // eklendi pencereyi görünür hale getir
     }
 }
