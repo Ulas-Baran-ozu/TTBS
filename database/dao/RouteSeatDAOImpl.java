@@ -40,4 +40,17 @@ public class RouteSeatDAOImpl implements RouteSeatDAO {
             p.executeUpdate();
         }
     }
+    @Override
+    public boolean exists(int routeId, int seatId) throws SQLException {
+        String sql = "SELECT 1 FROM route_seats WHERE route_id = ? AND seat_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement p = conn.prepareStatement(sql)) {
+
+            p.setInt(1, routeId);
+            p.setInt(2, seatId);
+            try (ResultSet rs = p.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
 }

@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface RouteSeatDAO {
     List<Integer> getOccupiedSeatIdsByRouteId(int routeId) throws SQLException;
-
-    void markSeatAsUnavailable(int routeId, int seatId) throws SQLException; // 👈 yeni eklendi
+    void markSeatAsUnavailable(int routeId, int seatId) throws SQLException;
+    boolean exists(int routeId, int seatId) throws SQLException; // ✅ EKLENDİ
 }
