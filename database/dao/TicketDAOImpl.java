@@ -71,6 +71,41 @@ public class TicketDAOImpl implements TicketDAO {
         }
         return list;
     }
+    @Override
+    public List<Ticket> getDetailedTicketsByUserId(int userId) throws SQLException {
+        String sql = """
+        SELECT t.ticket_id, t.route_id, t.seat_id, r.train_name, r.departure_time, 
+               r.source_station, r.destination_station, s.seat_number
+        FROM tickets t
+        JOIN routes r ON t.route_id = r.route_id
+        JOIN seats s ON t.seat_id = s.seat_id
+        WHERE t.user_id = ?
+    """;
+
+        List<Ticket> list = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement p = conn.prepareStatement(sql)) {
+
+            p.setInt(1, userId);
+            try (ResultSet rs = p.executeQuery()) {
+                while (rs.next()) {
+                    Ticket t = new Ticket(
+                            rs.getInt("ticket_id"),
+                            userId,
+                            rs.getInt("route_id"),
+                            rs.getInt("seat_id"),
+                            rs.getTimestamp("departure_time")
+                    );
+                    t.setTrainName(rs.getString("train_name"));
+                    t.setFrom(rs.getString("source_station"));
+                    t.setTo(rs.getString("destination_station"));
+                    t.setSeatNumber(rs.getString("seat_number"));
+                    list.add(t);
+                }
+            }
+        }
+        return list;
+    }
 
     @Override
     public List<Ticket> getAll() throws SQLException {

@@ -1,3 +1,4 @@
+// HomePageController.java
 package controller;
 
 import view.HomePageView;
@@ -10,7 +11,7 @@ import javax.swing.*;
 import java.text.ParseException;
 
 public class HomePageController {
-    private HomePageView homePageView;
+    private final HomePageView homePageView;
 
     public HomePageController(HomePageView homePageView) {
         this.homePageView = homePageView;
@@ -56,7 +57,6 @@ public class HomePageController {
         String arrival = homePageView.arrivalField.getText().trim();
         String date = homePageView.dateField.getText().trim();
         int tickets = (Integer) homePageView.ticketCountSpinner.getValue();
-        String tripType = homePageView.oneWayRadio.isSelected() ? "Tek Yön" : "Gidiş-Dönüş";
 
         if (departure.isEmpty() || arrival.isEmpty() || date.isEmpty()) {
             StringBuilder message = new StringBuilder("Lütfen aşağıdaki alanları doldurun:\n");

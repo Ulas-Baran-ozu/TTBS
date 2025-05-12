@@ -20,7 +20,6 @@ public class SeatSelectionPageView extends JFrame {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 JButton seat = new JButton((i * cols + j + 1) + "");
-                seat.setBackground(Color.GREEN); // bos koltuk
                 seatButtons[i][j] = seat;
                 seatPanel.add(seat);
             }

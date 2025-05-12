@@ -4,39 +4,39 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProfilePageView extends JFrame {
-    public JTextField nameField, emailField, phoneField, balanceField;
-    public JButton updateButton, addBalanceButton, backButton;
+    public JTextField firstNameField, lastNameField, emailField;
+    public JPasswordField passwordField;
+    public JTextField birthDateField;
+    public JButton updateButton, backButton;
 
     public ProfilePageView() {
-        setTitle("My Profile");
+        setTitle("Profilim");
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-
         JPanel infoPanel = new JPanel(new GridLayout(5, 2, 10, 10));
-        nameField = new JTextField();
+        firstNameField = new JTextField();
+        lastNameField = new JTextField();
         emailField = new JTextField();
-        phoneField = new JTextField();
-        balanceField = new JTextField();
-        balanceField.setEditable(false);
+        birthDateField = new JTextField();
+        passwordField = new JPasswordField();
 
-        infoPanel.add(new JLabel("Name Surname:"));
-        infoPanel.add(nameField);
-        infoPanel.add(new JLabel("Email:"));
+        infoPanel.add(new JLabel("Ad:"));
+        infoPanel.add(firstNameField);
+        infoPanel.add(new JLabel("Soyad:"));
+        infoPanel.add(lastNameField);
+        infoPanel.add(new JLabel("E-Posta:"));
         infoPanel.add(emailField);
-        infoPanel.add(new JLabel("Phone No:"));
-        infoPanel.add(phoneField);
-        infoPanel.add(new JLabel("Balance:"));
-        infoPanel.add(balanceField);
-
+        infoPanel.add(new JLabel("Doğum Tarihi (yyyy-MM-dd):"));
+        infoPanel.add(birthDateField);
+        infoPanel.add(new JLabel("Şifre:"));
+        infoPanel.add(passwordField);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        updateButton = new JButton("Update");
-        addBalanceButton = new JButton("Add Balance");
-        backButton = new JButton("Home");
+        updateButton = new JButton("Güncelle");
+        backButton = new JButton("Ana Sayfa");
         buttonPanel.add(updateButton);
-        buttonPanel.add(addBalanceButton);
         buttonPanel.add(backButton);
 
         setLayout(new BorderLayout());

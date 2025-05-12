@@ -53,4 +53,15 @@ public class RouteSeatDAOImpl implements RouteSeatDAO {
             }
         }
     }
+    @Override
+    public void markSeatAsAvailable(int routeId, int seatId) throws SQLException {
+        String sql = "UPDATE route_seats SET is_available = 1 WHERE route_id = ? AND seat_id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement p = conn.prepareStatement(sql)) {
+            p.setInt(1, routeId);
+            p.setInt(2, seatId);
+            p.executeUpdate();
+        }
+    }
 }

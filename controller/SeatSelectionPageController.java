@@ -9,6 +9,7 @@ import model.entities.Route;
 import model.entities.Ticket;
 import view.SeatSelectionPageView;
 import view.PaymentSuccessfulView;
+import view.HomePageView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,21 +31,21 @@ public class SeatSelectionPageController {
             RouteSeatDAO seatDAO = new RouteSeatDAOImpl();
             List<Integer> occupiedSeatIds = seatDAO.getOccupiedSeatIdsByRouteId(selectedRoute.getRouteId());
             markOccupiedSeats(occupiedSeatIds);
+            markUnoccupiedSeats(occupiedSeatIds);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(view, "Dolu koltuklar alınamadı!", "Veri Tabanı Hatası", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Dolu koltuklar alınamadı!", "Veritabanı Hatası", JOptionPane.ERROR_MESSAGE);
         }
 
-        // 🎯 Koltuklara numara ver ve dinleyici ata
-        int seatNumber = 1;
+        // Koltuklara numara ver ve action listener ekle
         for (int i = 0; i < view.rows; i++) {
             for (int j = 0; j < view.cols; j++) {
-                final JButton seat = view.seatButtons[i][j]; // ✅ final tanım
-                final int seatId = i * view.cols + j + 1;     // ✅ final seatId hesapla
+                final JButton seat = view.seatButtons[i][j];
+                final int seatId = i * view.cols + j + 1;
 
                 seat.setText(String.valueOf(seatId));
                 seat.setActionCommand(String.valueOf(seatId));
-                seat.setBackground(Color.GREEN); // boş koltuklar yeşil
+                seat.setBackground(Color.GREEN);
 
                 if (seat.isEnabled()) {
                     seat.addActionListener(e -> toggleSeatSelection(seat));
@@ -53,16 +54,24 @@ public class SeatSelectionPageController {
         }
 
         view.proceedButton.addActionListener(e -> proceedToPayment());
+
+        // ✅ Geri butonu listener
+        view.backButton.addActionListener(e -> {
+            view.dispose();
+            HomePageView homeView = new HomePageView();
+            new HomePageController(homeView);
+            homeView.setVisible(true);
+        });
     }
 
     private void toggleSeatSelection(JButton seat) {
         if (selectedSeats.contains(seat)) {
             selectedSeats.remove(seat);
-            seat.setBackground(Color.GREEN); // yeniden boş hale getir
+            seat.setBackground(Color.GREEN);
         } else {
             if (selectedSeats.size() < ticketCount) {
                 selectedSeats.add(seat);
-                seat.setBackground(Color.BLUE); // seçili hale getir
+                seat.setBackground(Color.BLUE);
             } else {
                 JOptionPane.showMessageDialog(view, "Yalnızca " + ticketCount + " koltuk seçebilirsiniz.");
             }
@@ -80,7 +89,7 @@ public class SeatSelectionPageController {
         List<Integer> seatNumbers = new ArrayList<>();
         for (JButton btn : selectedSeats) {
             try {
-                seatNumbers.add(Integer.parseInt(btn.getActionCommand())); // ✅ DOĞRU YOL
+                seatNumbers.add(Integer.parseInt(btn.getActionCommand()));
             } catch (NumberFormatException ex) {
                 ex.printStackTrace();
             }
@@ -118,8 +127,25 @@ public class SeatSelectionPageController {
             int row = index / view.cols;
             int col = index % view.cols;
             JButton seat = view.seatButtons[row][col];
-            seat.setBackground(Color.RED);
             seat.setEnabled(false);
+        }
+    }
+
+    private void markUnoccupiedSeats(List<Integer> occupiedIds) {
+        int totalSeats = view.rows * view.cols;
+
+        for (int seatId = 1; seatId <= totalSeats; seatId++) {
+            if (!occupiedIds.contains(seatId)) {
+                int index = seatId - 1;
+                int row = index / view.cols;
+                int col = index % view.cols;
+                JButton seat = view.seatButtons[row][col];
+
+                seat.setEnabled(true);
+                seat.setBackground(Color.GREEN);
+                seat.setOpaque(true);
+                seat.setBorderPainted(false);
+            }
         }
     }
 }

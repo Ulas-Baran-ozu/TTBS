@@ -11,4 +11,5 @@ public interface TicketDAO {
     List<Ticket> getAll() throws SQLException;
     void update(Ticket ticket) throws SQLException;
     void delete(int ticketId) throws SQLException;
+    List<Ticket> getDetailedTicketsByUserId(int userId) throws SQLException;
 }

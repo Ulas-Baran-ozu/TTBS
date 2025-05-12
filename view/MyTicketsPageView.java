@@ -1,3 +1,4 @@
+// MyTicketsPageView.java
 package view;
 
 import javax.swing.*;
@@ -9,23 +10,22 @@ public class MyTicketsPageView extends JFrame {
     public JButton cancelButton, backButton;
 
     public MyTicketsPageView() {
-        setTitle("My Tickets");
+        setTitle("Biletlerim");
         setSize(800, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        String[] columns = {"Ticket ID", "Train", "Date", "From", "To", "Seat No"};
-        DefaultTableModel model = new DefaultTableModel(columns, 0);
-        ticketTable = new JTable(model);
+        String[] columns = {"Bilet ID", "Tren Adı", "Tarih", "Kalkış", "Varış", "Koltuk"};
+        ticketTable = new JTable(new DefaultTableModel(columns, 0));
         JScrollPane scrollPane = new JScrollPane(ticketTable);
 
+        cancelButton = new JButton("Bileti İptal Et");
+        backButton = new JButton("Ana Sayfaya Dön");
+
         JPanel buttonPanel = new JPanel();
-        cancelButton = new JButton("Cancel Ticket");
-        backButton = new JButton("Back to Home");
         buttonPanel.add(cancelButton);
         buttonPanel.add(backButton);
 
-        setLayout(new BorderLayout());
         add(scrollPane, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
